@@ -1,7 +1,9 @@
 package com.example.sumit.holdyourbreath;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -18,7 +20,7 @@ public class main extends AppCompatActivity {
     public boolean running;
     EditText editText_breath1,editText_breath2,editText_breath3;
     Button btn_addData;
-
+    Button btn_ViewAlldata;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,12 +31,14 @@ public class main extends AppCompatActivity {
         editText_breath2 = (EditText) findViewById(R.id.editText_breath2);
         editText_breath3 = (EditText) findViewById(R.id.editText_breath3);
         btn_addData = (Button)findViewById(R.id.btn_addData);
+        btn_ViewAlldata = (Button)findViewById(R.id.btn_ViewAlldata);
 
         //Displaying Toast with Hello Javatpoint message
         Toast.makeText(getApplicationContext(),"Hello Javatpoint",Toast.LENGTH_LONG).show();
 
         Chronometer chronometerB = (Chronometer) findViewById(chronometer1);
         AddData();
+        viewAll();
         //chronometer.start();
     }
 
@@ -93,7 +97,7 @@ public class main extends AppCompatActivity {
                      boolean isInserted =    myDb.insertData(editText_breath1.getText().toString(),
                              editText_breath2.getText().toString(),
                              editText_breath3.getText().toString());
-                        if (isInserted=true)
+                        if (isInserted==true)
                             Toast.makeText(main.this,"Data Insterted", Toast.LENGTH_LONG).show();
                         else
                             Toast.makeText(main.this,"Data is not Insterted", Toast.LENGTH_LONG).show();
@@ -103,7 +107,41 @@ public class main extends AppCompatActivity {
         );
     }
 
+    public void viewAll(){
+        btn_ViewAlldata.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Cursor res = myDb.getAllData();
+                        if(res.getCount()==0){
+                                // show data
+                            showMessage("Error", "No data found");
 
+                            return;
+                            }
+                        StringBuffer buffer =  new StringBuffer();
+                        while (res.moveToNext()){
+                            buffer.append("Id :"+ res.getString(0)+"\n");
+                            buffer.append("Breath1:"+ res.getString(1)+"\n");
+                            buffer.append("Breath2 :"+ res.getString(2)+"\n");
+                            buffer.append("Breath3 :"+ res.getString(3)+"\n\n");
+
+                        }
+
+                        showMessage("Data",buffer.toString() );
+
+                    }
+                }
+        );
+    }
+
+    public void showMessage(String title, String Message){
+        AlertDialog.Builder builder =new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(Message);
+        builder.show();
+    }
 
 }
 

@@ -66,7 +66,12 @@
         android:onClick="dataAdd"
         android:id="@+id/btn_addData"
         android:text="Add Data" />
-
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="dataAdd"
+        android:id="@+id/btn_ViewAlldata"
+        android:text="View All" />
 
 
 </LinearLayout>
