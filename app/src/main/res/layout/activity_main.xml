@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context="com.example.sumit.holdyourbreath.main"
+    android:weightSum="1">
+
+    <Chronometer
+        android:id="@+id/chronometer1"
+        android:layout_width="189dp"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:layout_weight="0.33" />
+
+
+    <Button
+        android:id="@+id/startB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="StartChronometer"
+        android:textSize=""
+        android:text="Start" />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="pauseChronometer"
+        android:text="Pause" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="resetChronometer"
+        android:text="Reset" />
+
+</LinearLayout>
