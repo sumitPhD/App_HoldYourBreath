@@ -22,7 +22,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="StartChronometer"
-        android:textSize=""
         android:text="Start" />
 
 
@@ -37,5 +36,13 @@
         android:layout_height="wrap_content"
         android:onClick="resetChronometer"
         android:text="Reset" />
+
+    <TextView
+        android:id="@+id/textTime"
+        android:layout_width="115dp"
+        android:layout_height="20dp"
+        android:layout_weight="0.21"
+        android:textSize="20sp"/>
+
 
 </LinearLayout>
