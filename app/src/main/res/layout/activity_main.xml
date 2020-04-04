@@ -94,6 +94,18 @@
         android:id="@+id/btn_ViewAlldata"
         android:text="View All" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="setAlarm"
+        android:id="@+id/btn_setAlarm"
+        android:text="SET Alarm" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="view_stats"
+        android:id="@+id/btn_viewsStats"
+        android:text="View Bar Chart" />
 
 </LinearLayout>

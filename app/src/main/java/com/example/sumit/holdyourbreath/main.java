@@ -1,8 +1,10 @@
 package com.example.sumit.holdyourbreath;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.provider.AlarmClock;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -22,6 +24,9 @@ public class main extends AppCompatActivity {
     TextView Text_breath1, Text_breath2, Text_breath3;
     Button btn_addData;
     Button btn_ViewAlldata;
+    Button btn_setAlarm;
+    Button btn_viewsStats;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,13 +42,42 @@ public class main extends AppCompatActivity {
         editText_breath3 = (EditText) findViewById(R.id.editText_breath3);
         btn_addData = (Button)findViewById(R.id.btn_addData);
         btn_ViewAlldata = (Button)findViewById(R.id.btn_ViewAlldata);
+        btn_setAlarm = (Button)findViewById(R.id.btn_setAlarm);
+        btn_viewsStats = (Button)findViewById(R.id.btn_viewsStats);
 
         Chronometer chronometerB = (Chronometer) findViewById(chronometer1);
         AddData();
         viewAll();
+        setAlarm();
+        viewStats();
         //chronometer.start();
+
+
     }
 
+    public void setAlarm(){
+        btn_setAlarm.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
+                        intent.putExtra(AlarmClock.ALARM_SEARCH_MODE_LABEL,"Reminder for Breath Hold Capacity");
+                        startActivity(intent);
+                    }
+                }
+        );
+    }
+    public void viewStats(){
+        btn_viewsStats.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(v.getContext(),stats.class);
+                        startActivity(intent);
+                    }
+                }
+        );
+    }
 
 
     private void showElapsedTime() {
