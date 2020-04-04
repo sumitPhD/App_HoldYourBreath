@@ -26,6 +26,7 @@ public class main extends AppCompatActivity {
     Button btn_ViewAlldata;
     Button btn_setAlarm;
     Button btn_viewsStats;
+    Button button_startB, button_stopB,button_discardB ;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,19 +38,22 @@ public class main extends AppCompatActivity {
         Text_breath2 = (TextView) findViewById(R.id.text_breath2);
         Text_breath3 = (TextView) findViewById(R.id.text_breath3);
 
-        //editText_breath1 = (EditText) findViewById(R.id.editText_breath1);
-        editText_breath2 = (EditText) findViewById(R.id.editText_breath2);
-        editText_breath3 = (EditText) findViewById(R.id.editText_breath3);
         btn_addData = (Button)findViewById(R.id.btn_addData);
         btn_ViewAlldata = (Button)findViewById(R.id.btn_ViewAlldata);
         btn_setAlarm = (Button)findViewById(R.id.btn_setAlarm);
         btn_viewsStats = (Button)findViewById(R.id.btn_viewsStats);
-
+        button_startB = (Button)findViewById(R.id.button_startB);
+        button_stopB = (Button)findViewById(R.id.button_stopB);
+        button_discardB = (Button)findViewById(R.id.button_discardB);
         Chronometer chronometerB = (Chronometer) findViewById(chronometer1);
         AddData();
         viewAll();
         setAlarm();
         viewStats();
+        startBreath();
+        stopBreath();
+        discardBreath();
+
         //chronometer.start();
 
 
@@ -79,6 +83,51 @@ public class main extends AppCompatActivity {
         );
     }
 
+    public void startBreath(){
+        button_startB.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                       // if (!running) {
+                            //((Chronometer) findViewById(chronometer1)).setBase(SystemClock.elapsedRealtime());
+                            ((Chronometer) findViewById(chronometer1)).start();
+                         //   running = true;
+                        //}
+                    }
+                }
+        );
+    }
+
+    public void stopBreath(){
+        button_stopB.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ((Chronometer) findViewById(chronometer1)).stop();
+                        running=false;
+                        long elapsedMillis = SystemClock.elapsedRealtime() - ((Chronometer) findViewById(chronometer1)).getBase();
+                        int seconds = (int)(elapsedMillis/1000 % 60);
+                        //Intent intent = new Intent(getApplicationContext(),
+                        //      main.class).putExtra("timer",seconds);
+                        //startActivity(intent);
+                        setBreath1(seconds);
+                    }
+                }
+        );
+    }
+
+    public void discardBreath(){
+        button_discardB.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ((Chronometer) findViewById(chronometer1)).setBase(SystemClock.elapsedRealtime());
+                        running = false;
+                    }
+                }
+        );
+    }
+
 
     private void showElapsedTime() {
             long elapsedMillis = SystemClock.elapsedRealtime() - ((Chronometer) findViewById(chronometer1)).getBase();
@@ -88,7 +137,7 @@ public class main extends AppCompatActivity {
 
 
     /** Called when the user touches the button */
-    public void StartChronometer(View v)
+   /* public void StartChronometer(View v)
     {
         if(!running) {
             //((Chronometer) findViewById(chronometer1)).setBase(SystemClock.elapsedRealtime());
@@ -97,9 +146,9 @@ public class main extends AppCompatActivity {
 
         }
 
-    }
+    }*/
 
-    public void pauseChronometer(View v)
+   /* public void pauseChronometer(View v)
     {
         if(running) {
             // ((Chronometer) findViewById(chronometer1)).stop();
@@ -110,24 +159,18 @@ public class main extends AppCompatActivity {
             //Intent intent = new Intent(getApplicationContext(),
               //      main.class).putExtra("timer",seconds);
             //startActivity(intent);
-            display(seconds);
             setBreath1(seconds);
     }
-
-
-    }
-    private void display(int seconds) {
-        TextView BreathTextView = (TextView) findViewById(R.id.textTime);
-        BreathTextView.setText(String.valueOf(seconds));}
+    }*/
 
     private void setBreath1(int seconds) {
         TextView BreathTextView1 = (TextView) findViewById(R.id.text_breath1);
         BreathTextView1.setText(String.valueOf(seconds));}
 
-    public void resetChronometer(View v) {
+/*    public void resetChronometer(View v) {
         ((Chronometer) findViewById(chronometer1)).setBase(SystemClock.elapsedRealtime());
         running = false;
-    }
+    }*/
 
     public void AddData(){
         btn_addData.setOnClickListener(
@@ -135,8 +178,8 @@ public class main extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                      boolean isInserted =    myDb.insertData(Text_breath1.getText().toString(),
-                             editText_breath2.getText().toString(),
-                             editText_breath3.getText().toString());
+                             Text_breath2.getText().toString(),
+                             Text_breath3.getText().toString());
                         if (isInserted==true)
                             Toast.makeText(main.this,"Data Insterted", Toast.LENGTH_LONG).show();
                         else

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="500dp"
     android:gravity="center"
     android:orientation="vertical"
     tools:context="com.example.sumit.holdyourbreath.main"
@@ -15,56 +15,77 @@
         android:layout_width="189dp"
         android:layout_height="wrap_content"
         android:textSize="30sp"
-        android:layout_weight="0.33" />
+        android:gravity="center_horizontal" />
+
+ <LinearLayout
+     android:layout_width="wrap_content"
+     android:layout_height="150dp"
+     android:layout_weight="0.3"
+     android:orientation="vertical">
+     <LinearLayout
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_weight="0.5"
+         android:orientation="horizontal"
+         android:layout_gravity="center_vertical">
+
+         <TextView
+             android:id="@+id/text_breath1"
+             android:layout_width="90dp"
+             android:layout_height="30dp"
+             android:background="#9932CC"
+             android:textSize="20sp"/>
 
 
-    <Button
-        android:id="@+id/startB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="StartChronometer"
-        android:text="Start" />
+         <TextView
+             android:id="@+id/text_breath2"
+             android:layout_width="90dp"
+             android:layout_height="30dp"
+             android:background="#9982CC"
+             android:textSize="20sp"/>
+
+         <TextView
+             android:id="@+id/text_breath3"
+             android:layout_width="90dp"
+             android:layout_height="30dp"
+             android:background="#2182CC"
+             android:textSize="20sp"/>
+
+     </LinearLayout>
+
+     <LinearLayout
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_weight="0.5"
+         android:orientation="vertical"
+         android:layout_gravity="center_horizontal">
+
+         <Button
+             android:id="@+id/button_startB"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Start" />
+         <Button
+             android:id="@+id/button_stopB"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:onClick="pauseChronometer"
+             android:text="STOP" />
+         <Button
+             android:id="@+id/button_discardB"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:onClick="resetChronometer"
+             android:text="Discard" />
+
+     </LinearLayout>
 
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="pauseChronometer"
-        android:text="Pause" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="resetChronometer"
-        android:text="Reset" />
 
-    <TextView
-        android:id="@+id/textTime"
-        android:layout_width="115dp"
-        android:layout_height="20dp"
-        android:layout_weight="0.21"
-        android:textSize="20sp"/>
+ </LinearLayout>
 
-    <TextView
-        android:id="@+id/text_breath1"
-        android:layout_width="115dp"
-        android:layout_height="20dp"
-        android:layout_weight="0.21"
-        android:textSize="20sp"/>
-    <TextView
-        android:id="@+id/text_breath2"
-        android:layout_width="115dp"
-        android:layout_height="20dp"
-        android:layout_weight="0.21"
-        android:textSize="20sp"/>
-    <TextView
-        android:id="@+id/text_breath3"
-        android:layout_width="115dp"
-        android:layout_height="20dp"
-        android:layout_weight="0.21"
-        android:textSize="20sp"/>
-
-    <EditText
+    <!--<EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/editText_breath1"
@@ -80,7 +101,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/editText_breath3"
-        android:inputType="number"/>
+        android:inputType="number"/>-->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
