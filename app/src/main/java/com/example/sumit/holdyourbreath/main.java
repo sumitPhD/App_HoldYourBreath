@@ -19,6 +19,7 @@ public class main extends AppCompatActivity {
     private Chronometer chronometerB;
     public boolean running;
     EditText editText_breath1,editText_breath2,editText_breath3;
+    TextView Text_breath1, Text_breath2, Text_breath3;
     Button btn_addData;
     Button btn_ViewAlldata;
     @Override
@@ -27,14 +28,15 @@ public class main extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         myDb = new DatabaseHelper(this);
 
-        editText_breath1 = (EditText) findViewById(R.id.editText_breath1);
+        Text_breath1 = (TextView) findViewById(R.id.text_breath1);
+        Text_breath2 = (TextView) findViewById(R.id.text_breath2);
+        Text_breath3 = (TextView) findViewById(R.id.text_breath3);
+
+        //editText_breath1 = (EditText) findViewById(R.id.editText_breath1);
         editText_breath2 = (EditText) findViewById(R.id.editText_breath2);
         editText_breath3 = (EditText) findViewById(R.id.editText_breath3);
         btn_addData = (Button)findViewById(R.id.btn_addData);
         btn_ViewAlldata = (Button)findViewById(R.id.btn_ViewAlldata);
-
-        //Displaying Toast with Hello Javatpoint message
-        Toast.makeText(getApplicationContext(),"Hello Javatpoint",Toast.LENGTH_LONG).show();
 
         Chronometer chronometerB = (Chronometer) findViewById(chronometer1);
         AddData();
@@ -75,14 +77,18 @@ public class main extends AppCompatActivity {
               //      main.class).putExtra("timer",seconds);
             //startActivity(intent);
             display(seconds);
-
-        }
+            setBreath1(seconds);
+    }
 
 
     }
     private void display(int seconds) {
-        TextView quantityTextView = (TextView) findViewById(R.id.textTime);
-        quantityTextView.setText(String.valueOf(seconds));}
+        TextView BreathTextView = (TextView) findViewById(R.id.textTime);
+        BreathTextView.setText(String.valueOf(seconds));}
+
+    private void setBreath1(int seconds) {
+        TextView BreathTextView1 = (TextView) findViewById(R.id.text_breath1);
+        BreathTextView1.setText(String.valueOf(seconds));}
 
     public void resetChronometer(View v) {
         ((Chronometer) findViewById(chronometer1)).setBase(SystemClock.elapsedRealtime());
@@ -94,7 +100,7 @@ public class main extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                     boolean isInserted =    myDb.insertData(editText_breath1.getText().toString(),
+                     boolean isInserted =    myDb.insertData(Text_breath1.getText().toString(),
                              editText_breath2.getText().toString(),
                              editText_breath3.getText().toString());
                         if (isInserted==true)

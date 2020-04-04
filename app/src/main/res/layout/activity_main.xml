@@ -7,7 +7,8 @@
     android:gravity="center"
     android:orientation="vertical"
     tools:context="com.example.sumit.holdyourbreath.main"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:baselineAligned="false">
 
     <Chronometer
         android:id="@+id/chronometer1"
@@ -43,6 +44,26 @@
         android:layout_height="20dp"
         android:layout_weight="0.21"
         android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/text_breath1"
+        android:layout_width="115dp"
+        android:layout_height="20dp"
+        android:layout_weight="0.21"
+        android:textSize="20sp"/>
+    <TextView
+        android:id="@+id/text_breath2"
+        android:layout_width="115dp"
+        android:layout_height="20dp"
+        android:layout_weight="0.21"
+        android:textSize="20sp"/>
+    <TextView
+        android:id="@+id/text_breath3"
+        android:layout_width="115dp"
+        android:layout_height="20dp"
+        android:layout_weight="0.21"
+        android:textSize="20sp"/>
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -72,6 +93,7 @@
         android:onClick="dataAdd"
         android:id="@+id/btn_ViewAlldata"
         android:text="View All" />
+
 
 
 </LinearLayout>
