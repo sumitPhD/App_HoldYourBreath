@@ -21,13 +21,14 @@ public class main extends AppCompatActivity {
     private Chronometer chronometerB;
     public boolean running, discard;
     EditText editText_breath1,editText_breath2,editText_breath3;
-    TextView Text_breath1, Text_breath2, Text_breath3;
+    TextView Text_breath1, Text_breath2, Text_breath3,Text_avg;
     Button btn_addData;
     Button btn_ViewAlldata;
     Button btn_setAlarm;
     Button btn_viewsStats;
     Button button_startB, button_stopB,button_discardB ;
     int count_run = 0;
+    int avg;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class main extends AppCompatActivity {
         Text_breath1 = (TextView) findViewById(R.id.text_breath1);
         Text_breath2 = (TextView) findViewById(R.id.text_breath2);
         Text_breath3 = (TextView) findViewById(R.id.text_breath3);
+        Text_avg = (TextView) findViewById(R.id.text_avg);
 
         btn_addData = (Button)findViewById(R.id.btn_addData);
         btn_ViewAlldata = (Button)findViewById(R.id.btn_ViewAlldata);
@@ -187,6 +189,9 @@ public class main extends AppCompatActivity {
     private void clearBreath3() {
         TextView BreathTextView1 = (TextView) findViewById(R.id.text_breath3);
         BreathTextView1.setText("");}
+    private void setavg(int avg) {
+        TextView BreathTextView1 = (TextView) findViewById(R.id.text_avg);
+        BreathTextView1.setText(String.valueOf(avg));}
 
     public void AddData(){
         btn_addData.setOnClickListener(
@@ -194,17 +199,26 @@ public class main extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         if (count_run == 3) {
+                            /*Double val1 = Double.parseDouble(Text_breath1.getText().toString());
+                            Double val2 = Double.parseDouble(Text_breath2.getText().toString());
+                            Double val3 = Double.parseDouble(Text_breath3.getText().toString());
+                            Double avg = ((val1+val2+val3));*/
+                            Integer val1 = Integer.parseInt(Text_breath1.getText().toString());
+                            Integer val2 = Integer.parseInt(Text_breath2.getText().toString());
+                            Integer val3 = Integer.parseInt(Text_breath3.getText().toString());
+                            Integer avg = ((val1+val2+val3))/3;
+                            setavg(avg);
 
                             boolean isInserted = myDb.insertData(Text_breath1.getText().toString(),
                                     Text_breath2.getText().toString(),
-                                    Text_breath3.getText().toString());
+                                    Text_breath3.getText().toString(),
+                                    Text_avg.getText().toString());
                             if (isInserted == true){
                                 Toast.makeText(main.this, "Data Insterted", Toast.LENGTH_LONG).show();
                                 Toast.makeText(main.this, "You can take next test", Toast.LENGTH_LONG).show();
-
                                 clearBreath1();
-                            clearBreath2();
-                            clearBreath3();
+                                clearBreath2();
+                                clearBreath3();
                                 count_run = 0;}
                             else{
                                 Toast.makeText(main.this, "Data is not Insterted", Toast.LENGTH_LONG).show();
@@ -239,6 +253,7 @@ public class main extends AppCompatActivity {
                             buffer.append("Breath1:"+ res.getString(1)+"\n");
                             buffer.append("Breath2 :"+ res.getString(2)+"\n");
                             buffer.append("Breath3 :"+ res.getString(3)+"\n\n");
+                            buffer.append("Average :"+ res.getString(4)+"\n\n");
 
                         }
 

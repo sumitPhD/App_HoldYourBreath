@@ -18,6 +18,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL2 = "Breath1";
     public static final String COL3 = "Breath2";
     public static final String COL4 = "Breath3";
+    public static final String COL5 = "Average";
+
 
 
 
@@ -28,7 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME +" (ID INTEGER PRIMARY KEY AUTOINCREMENT,Breath1 INTEGER,Breath2 INTEGER,Breath3 INTEGER)");
+        db.execSQL("create table " + TABLE_NAME +" (ID INTEGER PRIMARY KEY AUTOINCREMENT,Breath1 INTEGER,Breath2 INTEGER,Breath3 INTEGER,Average INTEGER)");
 
 
     }
@@ -39,12 +41,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertData(String breath1,String breath2,String breath3 ){
+    public boolean insertData(String breath1,String breath2,String breath3,String avg ){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL2, breath1);
         contentValues.put(COL3, breath2);
         contentValues.put(COL4, breath3);
+        contentValues.put(COL5, avg);
         long result = db.insert(TABLE_NAME,null,contentValues);
         if (result==-1)
             return false;
