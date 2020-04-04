@@ -84,24 +84,6 @@
 
 
  </LinearLayout>
-
-    <!--<EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText_breath1"
-        android:inputType="number"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText_breath2"
-        android:inputType="number"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText_breath3"
-        android:inputType="number"/>-->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

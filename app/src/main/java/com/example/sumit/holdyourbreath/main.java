@@ -19,7 +19,7 @@ import static com.example.sumit.holdyourbreath.R.id.chronometer1;
 public class main extends AppCompatActivity {
     DatabaseHelper myDb;
     private Chronometer chronometerB;
-    public boolean running;
+    public boolean running, discard;
     EditText editText_breath1,editText_breath2,editText_breath3;
     TextView Text_breath1, Text_breath2, Text_breath3;
     Button btn_addData;
@@ -27,6 +27,7 @@ public class main extends AppCompatActivity {
     Button btn_setAlarm;
     Button btn_viewsStats;
     Button button_startB, button_stopB,button_discardB ;
+    int count_run = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -88,11 +89,11 @@ public class main extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                       // if (!running) {
-                            //((Chronometer) findViewById(chronometer1)).setBase(SystemClock.elapsedRealtime());
+                        if (!running) {
+                            ((Chronometer) findViewById(chronometer1)).setBase(SystemClock.elapsedRealtime());
                             ((Chronometer) findViewById(chronometer1)).start();
-                         //   running = true;
-                        //}
+                            running = true;
+                        }
                     }
                 }
         );
@@ -103,14 +104,29 @@ public class main extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        ((Chronometer) findViewById(chronometer1)).stop();
-                        running=false;
-                        long elapsedMillis = SystemClock.elapsedRealtime() - ((Chronometer) findViewById(chronometer1)).getBase();
-                        int seconds = (int)(elapsedMillis/1000 % 60);
-                        //Intent intent = new Intent(getApplicationContext(),
-                        //      main.class).putExtra("timer",seconds);
-                        //startActivity(intent);
-                        setBreath1(seconds);
+
+                        if(running) {
+                            ((Chronometer) findViewById(chronometer1)).stop();
+
+                            long elapsedMillis = SystemClock.elapsedRealtime() - ((Chronometer) findViewById(chronometer1)).getBase();
+                            int seconds = (int)(elapsedMillis/1000 % 60);
+                            //((Chronometer) findViewById(chronometer1)).setBase(SystemClock.elapsedRealtime());
+
+                            running = false;
+                            discard = true;
+                            if (count_run == 0) {
+                                setBreath1(seconds);
+                                count_run =1;
+                            } else if (count_run == 1) {
+                                setBreath2(seconds);
+                                count_run=2;
+                            } else if (count_run == 2) {
+                                setBreath3(seconds);
+                                Toast.makeText(main.this, "Done for now",
+                                        Toast.LENGTH_SHORT).show();
+                            count_run =3;}
+                        }
+
                     }
                 }
         );
@@ -121,9 +137,22 @@ public class main extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        ((Chronometer) findViewById(chronometer1)).setBase(SystemClock.elapsedRealtime());
-                        running = false;
-                    }
+                        if (!running & discard){
+                            //((Chronometer) findViewById(chronometer1)).setBase(SystemClock.elapsedRealtime());
+                            discard = false;
+                            if (count_run == 1) {
+                                clearBreath1();
+                                count_run=0;
+                            } else if (count_run == 2) {
+                                clearBreath2();
+                                count_run=1;
+                            } else if (count_run == 3) {
+                                clearBreath3();
+                                count_run=2;
+                            }
+                        }
+                        }
+
                 }
         );
     }
@@ -136,55 +165,57 @@ public class main extends AppCompatActivity {
         }
 
 
-    /** Called when the user touches the button */
-   /* public void StartChronometer(View v)
-    {
-        if(!running) {
-            //((Chronometer) findViewById(chronometer1)).setBase(SystemClock.elapsedRealtime());
-            ((Chronometer) findViewById(chronometer1)).start();
-            running =true;
 
-        }
-
-    }*/
-
-   /* public void pauseChronometer(View v)
-    {
-        if(running) {
-            // ((Chronometer) findViewById(chronometer1)).stop();
-            ((Chronometer) findViewById(chronometer1)).stop();
-            running=false;
-            long elapsedMillis = SystemClock.elapsedRealtime() - ((Chronometer) findViewById(chronometer1)).getBase();
-            int seconds = (int)(elapsedMillis/1000 % 60);
-            //Intent intent = new Intent(getApplicationContext(),
-              //      main.class).putExtra("timer",seconds);
-            //startActivity(intent);
-            setBreath1(seconds);
-    }
-    }*/
 
     private void setBreath1(int seconds) {
         TextView BreathTextView1 = (TextView) findViewById(R.id.text_breath1);
         BreathTextView1.setText(String.valueOf(seconds));}
+    private void clearBreath1() {
+        TextView BreathTextView1 = (TextView) findViewById(R.id.text_breath1);
+        BreathTextView1.setText("");}
 
-/*    public void resetChronometer(View v) {
-        ((Chronometer) findViewById(chronometer1)).setBase(SystemClock.elapsedRealtime());
-        running = false;
-    }*/
+    private void setBreath2(int seconds) {
+        TextView BreathTextView1 = (TextView) findViewById(R.id.text_breath2);
+        BreathTextView1.setText(String.valueOf(seconds));}
+    private void clearBreath2() {
+        TextView BreathTextView1 = (TextView) findViewById(R.id.text_breath2);
+        BreathTextView1.setText("");}
+
+    private void setBreath3(int seconds) {
+        TextView BreathTextView1 = (TextView) findViewById(R.id.text_breath3);
+        BreathTextView1.setText(String.valueOf(seconds));}
+    private void clearBreath3() {
+        TextView BreathTextView1 = (TextView) findViewById(R.id.text_breath3);
+        BreathTextView1.setText("");}
 
     public void AddData(){
         btn_addData.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                     boolean isInserted =    myDb.insertData(Text_breath1.getText().toString(),
-                             Text_breath2.getText().toString(),
-                             Text_breath3.getText().toString());
-                        if (isInserted==true)
-                            Toast.makeText(main.this,"Data Insterted", Toast.LENGTH_LONG).show();
-                        else
-                            Toast.makeText(main.this,"Data is not Insterted", Toast.LENGTH_LONG).show();
+                        if (count_run == 3) {
 
+                            boolean isInserted = myDb.insertData(Text_breath1.getText().toString(),
+                                    Text_breath2.getText().toString(),
+                                    Text_breath3.getText().toString());
+                            if (isInserted == true){
+                                Toast.makeText(main.this, "Data Insterted", Toast.LENGTH_LONG).show();
+                                Toast.makeText(main.this, "You can take next test", Toast.LENGTH_LONG).show();
+
+                                clearBreath1();
+                            clearBreath2();
+                            clearBreath3();
+                                count_run = 0;}
+                            else{
+                                Toast.makeText(main.this, "Data is not Insterted", Toast.LENGTH_LONG).show();
+
+                            }
+                        }
+
+                        else{
+                            Toast.makeText(main.this, "First finish all tests", Toast.LENGTH_LONG).show();
+
+                        }
                     }
                 }
         );
