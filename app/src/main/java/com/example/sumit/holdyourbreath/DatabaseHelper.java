@@ -30,7 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME +" (ID INTEGER PRIMARY KEY AUTOINCREMENT,Breath1 INTEGER,Breath2 INTEGER,Breath3 INTEGER,Average INTEGER)");
+        db.execSQL("create table " + TABLE_NAME +" (ID INTEGER PRIMARY KEY AUTOINCREMENT,Breath1 INTEGER,Breath2 INTEGER,Breath3 INTEGER,Average INTEGER,datetime default current_timestamp)");
 
 
     }

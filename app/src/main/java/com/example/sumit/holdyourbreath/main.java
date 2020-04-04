@@ -254,6 +254,7 @@ public class main extends AppCompatActivity {
                             buffer.append("Breath2 :"+ res.getString(2)+"\n");
                             buffer.append("Breath3 :"+ res.getString(3)+"\n\n");
                             buffer.append("Average :"+ res.getString(4)+"\n\n");
+                            buffer.append("Date :"+ res.getString(5)+"\n\n");
 
                         }
 
