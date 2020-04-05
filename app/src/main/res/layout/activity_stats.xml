@@ -6,12 +6,18 @@
     android:layout_height="match_parent"
     tools:context="com.example.sumit.holdyourbreath.stats">
 
-
+    <Button
+        android:id="@+id/view_a_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="views"/>
 
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/barchart"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="400dp"/>
+
+
 
 
 </LinearLayout>

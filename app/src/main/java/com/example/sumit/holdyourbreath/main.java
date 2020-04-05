@@ -17,7 +17,7 @@ import android.widget.Toast;
 import static com.example.sumit.holdyourbreath.R.id.chronometer1;
 
 public class main extends AppCompatActivity {
-    DatabaseHelper myDb;
+    public static DatabaseHelper myDb;
     private Chronometer chronometerB;
     public boolean running, discard;
     EditText editText_breath1,editText_breath2,editText_breath3;
@@ -111,7 +111,8 @@ public class main extends AppCompatActivity {
                             ((Chronometer) findViewById(chronometer1)).stop();
 
                             long elapsedMillis = SystemClock.elapsedRealtime() - ((Chronometer) findViewById(chronometer1)).getBase();
-                            int seconds = (int)(elapsedMillis/1000 % 60);
+                            //int seconds = (int)(elapsedMillis/1000 % 60);
+                            int seconds = (int)(elapsedMillis/1000);
                             //((Chronometer) findViewById(chronometer1)).setBase(SystemClock.elapsedRealtime());
 
                             running = false;
@@ -247,7 +248,10 @@ public class main extends AppCompatActivity {
 
                             return;
                             }
-                        StringBuffer buffer =  new StringBuffer();
+
+                        //StringBuffer buffer =  new StringBuffer();
+                        StringBuilder buffer =  new StringBuilder();
+
                         while (res.moveToNext()){
                             buffer.append("Id :"+ res.getString(0)+"\n");
                             buffer.append("Breath1:"+ res.getString(1)+"\n");
