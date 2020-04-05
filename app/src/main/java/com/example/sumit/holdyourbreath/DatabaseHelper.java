@@ -6,16 +6,18 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import static com.example.sumit.holdyourbreath.main.theString;
+
+//import static com.example.sumit.holdyourbreath.main.theString;
+
 /**
  * Created by SUMIT on 4/4/2020.
  */
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    public static String theString;
 
-
-    public static final String DATABASE_NAME =  theString +".db";//"breath.db";
-    public static final String TABLE_NAME = "breath_table";
+    public static final String DATABASE_NAME =  "breath.db" ;//theString +".db";//;
+    public static final String TABLE_NAME = theString;
     public static final String COL1 = "ID";
     public static final String COL2 = "Breath1";
     public static final String COL3 = "Breath2";
@@ -36,6 +38,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     }
+    // coming from main (called in main)
     public void setString(String str){theString = str;}
 
 

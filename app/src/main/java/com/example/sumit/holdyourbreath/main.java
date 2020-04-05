@@ -17,6 +17,7 @@ import android.widget.Toast;
 import static com.example.sumit.holdyourbreath.R.id.chronometer1;
 
 public class main extends AppCompatActivity {
+    public static String theString;
 
     public static DatabaseHelper myDb;
     private Chronometer chronometerB;
@@ -35,16 +36,21 @@ public class main extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        myDb = new DatabaseHelper(this);
 
         // from user.java to main.java
         Intent i = getIntent();
-        String name = i.getStringExtra("name");
+        String DATABASE_NAME = i.getStringExtra("name");
 
 //from main.java to Databasehelper.java
         //String theString = "aabb";
+       /* Intent i2 = new  Intent(this, DatabaseHelper.class);
+        i2.putExtra("DATABASE_NAME",name+".db");*/
         DatabaseHelper info = new DatabaseHelper(this);
-        info.setString(name);
+        info.setString(DATABASE_NAME);
+
+        myDb = new DatabaseHelper(this);
+        Toast.makeText(main.this, DATABASE_NAME,
+                Toast.LENGTH_SHORT).show();
 
         Text_breath1 = (TextView) findViewById(R.id.text_breath1);
         Text_breath2 = (TextView) findViewById(R.id.text_breath2);

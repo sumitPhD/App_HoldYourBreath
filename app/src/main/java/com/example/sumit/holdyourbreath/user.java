@@ -38,7 +38,7 @@ public class user extends AppCompatActivity {
                         Intent intent = new Intent(user.this,main.class);
                             //Integer val1 = Integer.parseInt(Text_breath1.getText().toString());
                         //Intent intent1 = new Intent(user.this,DatabaseHelper.class);
-                         String edit_name = edit_add_name.getText().toString();
+                        String edit_name = edit_add_name.getText().toString();
                         intent.putExtra("name",edit_name);
                         //intent1.putExtra("name","abc");
 
