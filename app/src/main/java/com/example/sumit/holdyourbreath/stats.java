@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class stats extends AppCompatActivity {
     Button view_a_bar ;
-    //use database from AActivity
+
     DatabaseHelper myDb = main.myDb;
 
 

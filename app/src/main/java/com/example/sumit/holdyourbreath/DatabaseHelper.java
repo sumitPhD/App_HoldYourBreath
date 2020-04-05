@@ -11,8 +11,10 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 
 public class DatabaseHelper extends SQLiteOpenHelper {
+    public static String theString;
 
-    public static final String DATABASE_NAME = "breath.db";
+
+    public static final String DATABASE_NAME =  theString +".db";//"breath.db";
     public static final String TABLE_NAME = "breath_table";
     public static final String COL1 = "ID";
     public static final String COL2 = "Breath1";
@@ -34,6 +36,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     }
+    public void setString(String str){theString = str;}
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

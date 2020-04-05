@@ -37,6 +37,15 @@ public class main extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         myDb = new DatabaseHelper(this);
 
+        // from user.java to main.java
+        Intent i = getIntent();
+        String name = i.getStringExtra("name");
+
+//from main.java to Databasehelper.java
+        //String theString = "aabb";
+        DatabaseHelper info = new DatabaseHelper(this);
+        info.setString(name);
+
         Text_breath1 = (TextView) findViewById(R.id.text_breath1);
         Text_breath2 = (TextView) findViewById(R.id.text_breath2);
         Text_breath3 = (TextView) findViewById(R.id.text_breath3);
@@ -57,6 +66,12 @@ public class main extends AppCompatActivity {
         startBreath();
         stopBreath();
         discardBreath();
+   /*     Intent i = getIntent();
+        String name = i.getStringExtra("name");*/
+       /* Toast.makeText(main.this, name,
+                Toast.LENGTH_SHORT).show();*/
+
+
 
         //chronometer.start();
 
