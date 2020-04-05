@@ -93,7 +93,7 @@ public class stats extends AppCompatActivity {
 
         bardataset.setColors(ColorTemplate.COLORFUL_COLORS);
 
-        barChart.animateY(5000);
+        barChart.animateY(500);
 
         viewAll();
 

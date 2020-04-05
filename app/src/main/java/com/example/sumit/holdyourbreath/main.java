@@ -19,7 +19,7 @@ import static com.example.sumit.holdyourbreath.R.id.chronometer1;
 public class main extends AppCompatActivity {
     public static DatabaseHelper myDb;
     private Chronometer chronometerB;
-    public boolean running, discard;
+    public boolean running, discard, data_add;
     EditText editText_breath1,editText_breath2,editText_breath3;
     TextView Text_breath1, Text_breath2, Text_breath3,Text_avg;
     Button btn_addData;
@@ -95,6 +95,9 @@ public class main extends AppCompatActivity {
                             ((Chronometer) findViewById(chronometer1)).setBase(SystemClock.elapsedRealtime());
                             ((Chronometer) findViewById(chronometer1)).start();
                             running = true;
+                            if(data_add){
+                                clearavg();
+                                data_add=false;}
                         }
                     }
                 }
@@ -120,6 +123,7 @@ public class main extends AppCompatActivity {
                             if (count_run == 0) {
                                 setBreath1(seconds);
                                 count_run =1;
+
                             } else if (count_run == 1) {
                                 setBreath2(seconds);
                                 count_run=2;
@@ -175,25 +179,27 @@ public class main extends AppCompatActivity {
         BreathTextView1.setText(String.valueOf(seconds));}
     private void clearBreath1() {
         TextView BreathTextView1 = (TextView) findViewById(R.id.text_breath1);
-        BreathTextView1.setText("");}
+        BreathTextView1.setText("Test 1");}
 
     private void setBreath2(int seconds) {
         TextView BreathTextView1 = (TextView) findViewById(R.id.text_breath2);
         BreathTextView1.setText(String.valueOf(seconds));}
     private void clearBreath2() {
         TextView BreathTextView1 = (TextView) findViewById(R.id.text_breath2);
-        BreathTextView1.setText("");}
+        BreathTextView1.setText("Test 2");}
 
     private void setBreath3(int seconds) {
         TextView BreathTextView1 = (TextView) findViewById(R.id.text_breath3);
         BreathTextView1.setText(String.valueOf(seconds));}
     private void clearBreath3() {
         TextView BreathTextView1 = (TextView) findViewById(R.id.text_breath3);
-        BreathTextView1.setText("");}
+        BreathTextView1.setText("Test 3");}
     private void setavg(int avg) {
         TextView BreathTextView1 = (TextView) findViewById(R.id.text_avg);
         BreathTextView1.setText(String.valueOf(avg));}
-
+    private void clearavg() {
+        TextView BreathTextView1 = (TextView) findViewById(R.id.text_avg);
+        BreathTextView1.setText("Average");}
     public void AddData(){
         btn_addData.setOnClickListener(
                 new View.OnClickListener() {
@@ -220,7 +226,8 @@ public class main extends AppCompatActivity {
                                 clearBreath1();
                                 clearBreath2();
                                 clearBreath3();
-                                count_run = 0;}
+                                count_run = 0;
+                                data_add = true;}
                             else{
                                 Toast.makeText(main.this, "Data is not Insterted", Toast.LENGTH_LONG).show();
 

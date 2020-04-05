@@ -20,17 +20,19 @@
  <LinearLayout
      android:layout_width="wrap_content"
      android:layout_height="150dp"
-     android:layout_weight="0.3"
+     android:layout_weight="0.8"
+     android:layout_marginBottom="60dp"
      android:orientation="vertical">
      <LinearLayout
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
-         android:layout_weight="0.5"
+         android:layout_weight="0."
          android:orientation="horizontal"
          android:layout_gravity="center_vertical">
 
          <TextView
              android:id="@+id/text_breath1"
+             android:text="Test 1"
              android:layout_width="90dp"
              android:layout_height="30dp"
              android:background="#9932CC"
@@ -39,6 +41,7 @@
 
          <TextView
              android:id="@+id/text_breath2"
+             android:text="Test 2"
              android:layout_width="90dp"
              android:layout_height="30dp"
              android:background="#9982CC"
@@ -46,13 +49,16 @@
 
          <TextView
              android:id="@+id/text_breath3"
+             android:text="Test 3"
              android:layout_width="90dp"
              android:layout_height="30dp"
              android:background="#2182CC"
+
              android:textSize="20sp"/>
 
          <TextView
              android:id="@+id/text_avg"
+             android:text="Average"
              android:layout_width="90dp"
              android:layout_height="30dp"
              android:background="#5132CC"
@@ -65,25 +71,28 @@
          android:layout_height="wrap_content"
          android:layout_weight="0.5"
          android:orientation="vertical"
-         android:layout_gravity="center_horizontal">
+         android:layout_gravity="center_horizontal"
+         android:gravity="center">
 
          <Button
              android:id="@+id/button_startB"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:text="Start" />
+             android:text="INHALE and Hold Your Breath" />
          <Button
              android:id="@+id/button_stopB"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:onClick="pauseChronometer"
-             android:text="STOP" />
+             android:text="Exhale" />
+
          <Button
              android:id="@+id/button_discardB"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:onClick="resetChronometer"
-             android:text="Discard" />
+             android:layout_marginTop="30dp"
+             android:text="Discard the Last Test" />
 
      </LinearLayout>
 
@@ -96,26 +105,27 @@
         android:layout_height="wrap_content"
         android:onClick="dataAdd"
         android:id="@+id/btn_addData"
-        android:text="Add Data" />
+        android:text="Save Your Test" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="dataAdd"
         android:id="@+id/btn_ViewAlldata"
-        android:text="View All" />
+        android:text="View All Test Results" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="view_stats"
+        android:id="@+id/btn_viewsStats"
+        android:text="Bar Chart" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="setAlarm"
         android:id="@+id/btn_setAlarm"
-        android:text="SET Alarm" />
+        android:text="SET Alarm To remind You" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="view_stats"
-        android:id="@+id/btn_viewsStats"
-        android:text="View Bar Chart" />
+
 
 </LinearLayout>
