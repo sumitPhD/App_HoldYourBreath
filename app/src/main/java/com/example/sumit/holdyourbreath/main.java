@@ -17,6 +17,7 @@ import android.widget.Toast;
 import static com.example.sumit.holdyourbreath.R.id.chronometer1;
 
 public class main extends AppCompatActivity {
+
     public static DatabaseHelper myDb;
     private Chronometer chronometerB;
     public boolean running, discard, data_add;
